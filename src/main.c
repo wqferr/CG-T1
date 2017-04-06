@@ -7,6 +7,7 @@
 
 // Ângulo de rotação do cata vento
 float angle = 0;
+int direction = 0;
 
 void drawSail(void) {
     glBegin(GL_QUADS);
@@ -58,8 +59,16 @@ void draw(void) {
 }
 
 void update(void) {
-    angle += .005f;
+    angle += .005f * direction;
     glutPostRedisplay();
+}
+
+void mouseClicked(int button, int state, int x, int y) {
+    if (state == GLUT_UP) {
+        direction = 0;
+    } else {
+        direction = (button == GLUT_LEFT_BUTTON ? 1 : -1);
+    }
 }
 
 void init(void) {
@@ -77,6 +86,7 @@ int main(int argc, char *argv[]) {
     init();
     glutDisplayFunc(&draw);
     glutIdleFunc(&update);
+    glutMouseFunc(&mouseClicked);
     glutMainLoop();
 
     return 0;
