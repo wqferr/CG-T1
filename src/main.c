@@ -7,9 +7,32 @@
 
 // Ângulo de rotação do cata vento
 float angle = 10;
+
+float sunAngle = 0;
 int direction = 0;
 
+void drawSun(void) {
+    glBegin(GL_QUADS);
+        glVertex2f(-5.f, 5.f);
+        glVertex2f(-5.f, -5.f);
+        glVertex2f(5.f, -5.f);
+        glVertex2f(5.f, 5.f);
+    glEnd();
+}
+
 void drawBackground(void) {
+    glPushMatrix();
+        glTranslatef(-35.f, 35.f, 0.f);
+        glRotatef(sunAngle, 0.f, 0.f, 1.f);
+
+        glColor3ub(255, 255, 175);
+        drawSun();
+
+        glRotatef(45.f, 0.f, 0.f, 1.f);
+        glColor3ub(255, 255, 50);
+        drawSun();
+    glPopMatrix();
+
     glColor3ub(50, 50, 50);
     glBegin(GL_QUADS);
         // Estrada
@@ -81,6 +104,7 @@ void draw(void) {
 
 void update(void) {
     angle += .005f * direction;
+    sunAngle += 0.001;
     glutPostRedisplay();
 }
 
