@@ -1,9 +1,20 @@
+/*
+ * 
+ * Choyoung Lim                 6436060
+ * Rafael Olivier Cardoso       9436166
+ * Guilherme Correa Fernandes   9278174
+ * William Quelho Ferreira      9293421
+ *
+ */
 
-#include <stdio.h>
+
 #include <GL/glut.h>
 
 #define WINDOW_W 600
 #define WINDOW_H 600
+
+#define MILL_SPEED  .005f
+#define SUN_SPEED   .001f
 
 // Ângulo de rotação do cata vento
 float angle = 10;
@@ -123,10 +134,10 @@ void draw(void) {
 // Callback de update
 void update(void) {
     // Animar catavento
-    angle += .005f * direction;
+    angle += MILL_SPEED * direction;
 
     // Animar sol
-    sunAngle += 0.001;
+    sunAngle += SUN_SPEED;
 
 
     // Limitar ângulo do catavento
