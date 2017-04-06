@@ -105,6 +105,16 @@ void draw(void) {
 void update(void) {
     angle += .005f * direction;
     sunAngle += 0.001;
+
+    if (angle > 360)
+        angle -= 360;
+    if (angle < 0)
+        angle += 360;
+
+    if (sunAngle > 360)
+        sunAngle -= 360;
+    if (sunAngle < 0)
+        sunAngle += 360;
     glutPostRedisplay();
 }
 
