@@ -59,7 +59,7 @@ void draw(void) {
 
 void update(void) {
     angle += .005f;
-    draw();
+    glutPostRedisplay();
 }
 
 void init(void) {
